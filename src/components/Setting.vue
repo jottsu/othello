@@ -1,5 +1,5 @@
 <template>
-  <div class="setting">
+  <div>
     <h1>Setting</h1>
     <div>
       先手（黒）
@@ -26,6 +26,7 @@ export default {
     startGame: function() {
       localStorage.setItem('player1', this.player1)
       localStorage.setItem('player2', this.player2)
+      this.$router.push('game')
     }
   }
 }
