@@ -1,7 +1,9 @@
 <template>
   <table class="borad">
     <tr v-for="i in 8" :key="i">
-      <td v-for="j in 8" :key="j" @click="setDisc(i, j)">
+      <td v-for="j in 8" :key="j" @click="setDisc(i, j)"
+          :class="{ok: getChangableIndexes(i, j).length}"
+      >
         <Disc :status="getDisc(i, j)"></Disc>
       </td>
     </tr>
@@ -10,6 +12,7 @@
 
 <script>
 import Disc from '@/components/modules/Disc'
+import { getChangableIndexes } from '@/logics'
 
 export default {
   data: function() {
@@ -29,7 +32,7 @@ export default {
   },
   methods: {
     getDisc: function (i, j) {
-      const index = (i - 1) * 8 + j - 1
+      const index = this.getIndex(i, j)
       switch (this.discs[index]) {
         case 1:
           return 1
@@ -40,12 +43,26 @@ export default {
       }
     },
     setDisc: function (i, j) {
-      const index = (i - 1) * 8 + j - 1
+      const index = this.getIndex(i, j)
       if (this.discs[index] !== 0) {
         return
       }
+      const changableIndexes = this.getChangableIndexes(i, j)
+      if (!changableIndexes.length) {
+        return
+      }
       this.discs.splice(index, 1, this.nextDisc)
+      changableIndexes.forEach(idx => {
+        this.discs.splice(idx, 1, this.nextDisc)
+      });
       this.nextDisc *= -1
+    },
+    getChangableIndexes: function(i, j) {
+      const changableIndexes = getChangableIndexes(i, j, this.nextDisc, this.discs)
+      return changableIndexes
+    },
+    getIndex: function(i, j) {
+      return (i - 1) * 8 + j - 1
     }
   },
   components: {
@@ -70,5 +87,9 @@ td {
   padding: 0;
   border: solid 1px #888;
   background-color: #9fa;
+}
+
+td.ok:hover {
+  background-color: #cfc;
 }
 </style>
