@@ -9,7 +9,7 @@
       後手（白）
       <input type="text" placeholder="名前" v-model="names.player2">
     </div>
-    <button @click="startGame">はじめる</button>
+    <button @click="startGame" :disabled="isBtnDisabled">はじめる</button>
   </div>
 </template>
 
@@ -28,6 +28,11 @@ export default {
     startGame: function() {
       this.$store.dispatch('startGame', this.names)
       this.$router.push('game')
+    }
+  },
+  computed: {
+    isBtnDisabled: function() {
+      return (this.names.player1.trim() === "" || this.names.player2.trim() === "")
     }
   }
 }
