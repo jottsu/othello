@@ -24,6 +24,13 @@ export default new Vuex.Store({
     startGame ({ commit }, names) {
       commit('setNames', names)
       commit('setIsPlaying', true)
+    },
+    finishGame ({ commit }) {
+      commit('setNames', {
+        player1: '',
+        player2: ''
+      })
+      commit('setIsPlaying', false)
     }
   },
   plugins: [createPersistedState()]

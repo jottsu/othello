@@ -5,6 +5,7 @@
       <span>Player1: {{ names.player1 }}</span>
       <span>Player2: {{ names.player1 }}</span>
     </div>
+    <button @click="finishGame">おわる</button>
   </div>
 </template>
 
@@ -15,8 +16,11 @@ export default {
       names: this.$store.state.names
     }
   },
-  mounted: function() {
-
+  methods: {
+    finishGame: function() {
+      this.$store.dispatch('finishGame')
+      this.$router.push('setting')
+    }
   }
 }
 </script>
