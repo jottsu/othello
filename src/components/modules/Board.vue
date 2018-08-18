@@ -2,13 +2,15 @@
   <table class="borad">
     <tr v-for="i in 8" :key="i">
       <td v-for="j in 8" :key="j" @click="setDisc(i, j)">
-        {{ getDisc(i, j) }}
+        <Disc :status="getDisc(i, j)"></Disc>
       </td>
     </tr>
   </table>
 </template>
 
 <script>
+import Disc from '@/components/modules/Disc'
+
 export default {
   data: function() {
     return {
@@ -45,6 +47,9 @@ export default {
       this.discs.splice(index, 1, this.nextDisc)
       this.nextDisc *= -1
     }
+  },
+  components: {
+    Disc
   }
 }
 </script>
@@ -54,7 +59,16 @@ export default {
   margin: 20px auto;
 }
 
+table {
+  border-collapse: collapse;
+}
+
 td {
   cursor: pointer;
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  border: solid 1px #888;
+  background-color: #9fa;
 }
 </style>
