@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '@/store'
 import Setting from '@/components/Setting'
 import Game from '@/components/Game'
 
@@ -9,7 +10,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/setting'
+      redirect: () => {
+        if (store.state.isPlaying) {
+          return '/game'
+        }
+        return '/setting'
+      }
     }, {
       path: '/setting',
       name: 'Setting',
