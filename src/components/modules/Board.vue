@@ -1,13 +1,16 @@
 <template>
-  <table class="borad">
-    <tr v-for="i in 8" :key="i">
-      <td v-for="j in 8" :key="j" @click="setDisc(i, j)"
-          :class="{ok: getChangableIndexes(i, j).length}"
-      >
-        <Disc :status="getDisc(i, j)"></Disc>
-      </td>
-    </tr>
-  </table>
+  <div>
+    <h3>{{getNextPlayer}}の番です</h3>
+    <table>
+      <tr v-for="i in 8" :key="i">
+        <td v-for="j in 8" :key="j" @click="setDisc(i, j)"
+            :class="{ok: getChangableIndexes(i, j).length}"
+        >
+          <Disc :status="getDisc(i, j)"></Disc>
+        </td>
+      </tr>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -65,6 +68,11 @@ export default {
       return (i - 1) * 8 + j - 1
     }
   },
+  computed: {
+    getNextPlayer: function () {
+      return (this.nextDisc === 1) ? '黒' : '白'
+    }
+  },
   components: {
     Disc
   }
@@ -72,11 +80,8 @@ export default {
 </script>
 
 <style scoped>
-.borad {
-  margin: 20px auto;
-}
-
 table {
+  margin: 20px auto;
   border-collapse: collapse;
 }
 

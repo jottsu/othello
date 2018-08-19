@@ -1,11 +1,11 @@
 <template>
   <div>
     <h1>Setting</h1>
-    <div>
+    <div class="name-form">
       先手（黒）
       <input type="text" placeholder="名前" v-model="names.player1">
     </div>
-    <div>
+    <div class="name-form">
       後手（白）
       <input type="text" placeholder="名前" v-model="names.player2">
     </div>
@@ -37,3 +37,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.name-form {
+  margin: 20px 0;
+}
+</style>

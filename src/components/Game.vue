@@ -2,8 +2,8 @@
   <div>
     <h1>Game</h1>
     <div>
-      <span>Player1: {{ names.player1 }}</span>
-      <span>Player2: {{ names.player1 }}</span>
+      <span class="black-name">黒: {{ names.player1 }}</span>
+      <span class="white-name">白: {{ names.player2 }}</span>
     </div>
     <Board></Board>
     <button @click="finishGame">おわる</button>
@@ -30,3 +30,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.black-name {
+  margin-right: 60px;
+}
+
+.white-name {
+  margin-left: 60px;
+}
+</style>
