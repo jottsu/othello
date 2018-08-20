@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate"
+import game from './modules/game'
 
 Vue.use(Vuex)
 
@@ -32,6 +33,9 @@ export default new Vuex.Store({
       })
       commit('setIsPlaying', false)
     }
+  },
+  modules: {
+    game
   },
   plugins: [createPersistedState()]
 })

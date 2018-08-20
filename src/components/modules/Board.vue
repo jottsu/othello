@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h3>{{getNextPlayer}}の番です</h3>
+    <h3>{{ getNextPlayer }} の番です</h3>
     <table>
       <tr v-for="i in 8" :key="i">
-        <td v-for="j in 8" :key="j" @click="setDisc(i, j)"
+        <td v-for="j in 8" :key="j" @click="setDiscs([i, j])"
             :class="{ok: getChangableIndexes(i, j).length}"
         >
           <Disc :status="getDisc(i, j)"></Disc>
@@ -15,63 +15,29 @@
 
 <script>
 import Disc from '@/components/modules/Disc'
-import { getChangableIndexes } from '@/logics'
+import { mapState, mapGetters, mapActions } from 'vuex'
+import { getChangableIndexes, getIndex } from '@/logics'
 
 export default {
-  data: function() {
-    return {
-      discs: [
-        0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, -1, 1, 0, 0, 0,
-        0, 0, 0, 1, -1, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0
-      ],
-      nextDisc: 1
-    }
-  },
   methods: {
+    ...mapActions('game', [
+      'setDiscs'
+    ]),
     getDisc: function (i, j) {
-      const index = this.getIndex(i, j)
-      switch (this.discs[index]) {
-        case 1:
-          return 1
-        case -1:
-          return -1
-        default:
-          return 0
-      }
-    },
-    setDisc: function (i, j) {
-      const index = this.getIndex(i, j)
-      if (this.discs[index] !== 0) {
-        return
-      }
-      const changableIndexes = this.getChangableIndexes(i, j)
-      if (!changableIndexes.length) {
-        return
-      }
-      this.discs.splice(index, 1, this.nextDisc)
-      changableIndexes.forEach(idx => {
-        this.discs.splice(idx, 1, this.nextDisc)
-      });
-      this.nextDisc *= -1
+      return this.discs[getIndex(i, j)]
     },
     getChangableIndexes: function(i, j) {
-      const changableIndexes = getChangableIndexes(i, j, this.nextDisc, this.discs)
-      return changableIndexes
-    },
-    getIndex: function(i, j) {
-      return (i - 1) * 8 + j - 1
+      return getChangableIndexes(i, j, this.nextDisc, this.discs)
     }
   },
   computed: {
-    getNextPlayer: function () {
-      return (this.nextDisc === 1) ? '黒' : '白'
-    }
+    ...mapState('game', [
+      'discs',
+      'nextDisc'
+    ]),
+    ...mapGetters('game', [
+      'getNextPlayer'
+    ])
   },
   components: {
     Disc

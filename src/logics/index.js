@@ -6,7 +6,9 @@ import getUpperRightIndexes from './lib/getUpperRightIndexes'
 import getUpperLeftIndexes from './lib/getUpperLeftIndexes'
 import getLowerRightIndexes from './lib/getLowerRightIndexes'
 import getLowerLeftIndexes from './lib/getLowerLeftIndexes'
-import { getIndex } from './util'
+import getIndex from './util/getIndex'
+
+export { getIndex }
 
 export const getChangableIndexes = (i, j, nextDisc, discs) => {
   const changableIndexes = []

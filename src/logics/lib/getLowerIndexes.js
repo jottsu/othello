@@ -1,4 +1,4 @@
-import { getIndex } from '../util'
+import getIndex from '../util/getIndex'
 
 export default (i, j, nextDisc, discs) => {
   let lowerIndexes = []
