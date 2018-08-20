@@ -16,7 +16,7 @@
 <script>
 export default {
   name: 'setting',
-  data: function() {
+  data () {
     return {
       names: {
         player1: '',
@@ -25,13 +25,13 @@ export default {
     }
   },
   methods: {
-    startGame: function() {
-      this.$store.dispatch('startGame', this.names)
+    startGame () {
+      this.$store.dispatch('setUp', this.names)
       this.$router.push('game')
     }
   },
   computed: {
-    isBtnDisabled: function() {
+    isBtnDisabled () {
       return (this.names.player1.trim() === "" || this.names.player2.trim() === "")
     }
   }

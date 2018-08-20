@@ -1,4 +1,4 @@
-# othello-client
+# othello
 
 > A Vue.js project
 

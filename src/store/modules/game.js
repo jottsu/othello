@@ -1,20 +1,22 @@
 import { getIndex, getChangableIndexes } from '../../logics'
 
+const initialState = {
+  discs: [
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, -1, 1, 0, 0, 0,
+    0, 0, 0, 1, -1, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0
+  ],
+  nextDisc: 1
+}
+
 export default {
   namespaced: true,
-  state: {
-    discs: [
-      0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, -1, 1, 0, 0, 0,
-      0, 0, 0, 1, -1, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0
-    ],
-    nextDisc: 1
-  },
+  state: initialState,
   getters: {
     getNextPlayer(state, getters, rootState) {
       return (state.nextDisc === 1) ? `${rootState.names.player1}さん(黒)` : `${rootState.names.player2}さん(白)`
@@ -26,6 +28,11 @@ export default {
     },
     changeNextDisc (state) {
       state.nextDisc *= -1
+    },
+    resetState (state) {
+      Object.keys(state).forEach(key => {
+        state[key] = initialState[key]
+      })
     }
   },
   actions: {
@@ -43,6 +50,9 @@ export default {
         commit('setDisc', idx)
       });
       commit('changeNextDisc')
+    },
+    reset ({ commit }) {
+      commit('resetState')
     }
   }
 }

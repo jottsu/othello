@@ -11,23 +11,22 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Board from '@/components/modules/Board'
 
 export default {
-  data: function() {
-    return {
-      names: this.$store.state.names
-    }
-  },
   methods: {
-    finishGame: function() {
-      this.$store.dispatch('finishGame')
+    finishGame () {
+      if (!confirm('本当に終了しますか？')) {
+        return
+      }
+      this.$store.dispatch('reset');
+      this.$store.dispatch('game/reset')
       this.$router.push('setting')
     }
   },
-  components: {
-    Board
-  }
+  computed: mapState(['names']),
+  components: { Board }
 }
 </script>
 

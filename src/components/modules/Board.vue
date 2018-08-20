@@ -14,19 +14,17 @@
 </template>
 
 <script>
-import Disc from '@/components/modules/Disc'
 import { mapState, mapGetters, mapActions } from 'vuex'
+import Disc from '@/components/modules/Disc'
 import { getChangableIndexes, getIndex } from '@/logics'
 
 export default {
   methods: {
-    ...mapActions('game', [
-      'setDiscs'
-    ]),
-    getDisc: function (i, j) {
+    ...mapActions('game', ['setDiscs']),
+    getDisc (i, j) {
       return this.discs[getIndex(i, j)]
     },
-    getChangableIndexes: function(i, j) {
+    getChangableIndexes (i, j) {
       return getChangableIndexes(i, j, this.nextDisc, this.discs)
     }
   },
@@ -35,13 +33,9 @@ export default {
       'discs',
       'nextDisc'
     ]),
-    ...mapGetters('game', [
-      'getNextPlayer'
-    ])
+    ...mapGetters('game', ['getNextPlayer'])
   },
-  components: {
-    Disc
-  }
+  components: { Disc }
 }
 </script>
 

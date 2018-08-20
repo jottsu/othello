@@ -5,37 +5,38 @@ import game from './modules/game'
 
 Vue.use(Vuex)
 
+const initialState = {
+  isPlaying: false,
+  names: {
+    player1: '',
+    player2: ''
+  }
+}
+
 export default new Vuex.Store({
-  state: {
-    isPlaying: false,
-    names: {
-      player1: '',
-      player2: ''
-    }
-  },
+  state: initialState,
   mutations: {
     setNames (state, names) {
       state.names = names
     },
     setIsPlaying (state, isPlaying) {
       state.isPlaying = isPlaying
+    },
+    resetState (state) {
+      Object.keys(state).forEach(key => {
+        state[key] = initialState[key]
+      })
     }
   },
   actions: {
-    startGame ({ commit }, names) {
+    setUp ({ commit }, names) {
       commit('setNames', names)
       commit('setIsPlaying', true)
     },
-    finishGame ({ commit }) {
-      commit('setNames', {
-        player1: '',
-        player2: ''
-      })
-      commit('setIsPlaying', false)
+    reset ({ commit }) {
+      commit('resetState')
     }
   },
-  modules: {
-    game
-  },
+  modules: { game },
   plugins: [createPersistedState()]
 })
