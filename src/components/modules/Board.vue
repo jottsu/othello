@@ -3,11 +3,7 @@
     <h3>{{ getNextPlayer }} の番です</h3>
     <table>
       <tr v-for="i in 8" :key="i">
-        <td v-for="j in 8" :key="j" @click="setDiscs([i, j])"
-            :class="{ok: getChangableIndexes(i, j).length}"
-        >
-          <Disc :status="getDisc(i, j)"></Disc>
-        </td>
+        <Square v-for="j in 8" :key="j" :i="i" :j="j"></Square>
       </tr>
     </table>
   </div>
@@ -15,27 +11,12 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
+import Square from '@/components/modules/Square'
 import Disc from '@/components/modules/Disc'
-import { getChangableIndexes, getIndex } from '@/logics'
 
 export default {
-  methods: {
-    ...mapActions('game', ['setDiscs']),
-    getDisc (i, j) {
-      return this.discs[getIndex(i, j)]
-    },
-    getChangableIndexes (i, j) {
-      return getChangableIndexes(i, j, this.nextDisc, this.discs)
-    }
-  },
-  computed: {
-    ...mapState('game', [
-      'discs',
-      'nextDisc'
-    ]),
-    ...mapGetters('game', ['getNextPlayer'])
-  },
-  components: { Disc }
+  computed: mapGetters('game', ['getNextPlayer']),
+  components: { Square }
 }
 </script>
 
@@ -43,18 +24,6 @@ export default {
 table {
   margin: 20px auto;
   border-collapse: collapse;
-}
-
-td {
-  cursor: pointer;
-  height: 50px;
-  width: 50px;
-  padding: 0;
-  border: solid 1px #888;
-  background-color: #9fa;
-}
-
-td.ok:hover {
-  background-color: #cfc;
+  border: 3px solid #666;
 }
 </style>
