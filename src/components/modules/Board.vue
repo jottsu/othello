@@ -12,7 +12,6 @@
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
 import Square from '@/components/modules/Square'
-import Disc from '@/components/modules/Disc'
 
 export default {
   computed: mapGetters('game', ['getNextPlayer']),

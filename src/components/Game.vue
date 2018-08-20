@@ -1,10 +1,16 @@
 <template>
   <div>
     <h1>Game</h1>
-    <div>
-      <span class="black-name">黒: {{ names.player1 }}</span>
-      <span class="white-name">白: {{ names.player2 }}</span>
-    </div>
+    <table>
+      <tr>
+        <td>黒: {{ names.player1 }}</td>
+        <td>白: {{ names.player2 }}</td>
+      </tr>
+      <tr>
+        <td>{{ getDiscsNum(1) }}</td>
+        <td>{{ getDiscsNum(-1) }}</td>
+      </tr>
+    </table>
     <Board></Board>
     <button @click="finishGame">おわる</button>
   </div>
@@ -23,19 +29,27 @@ export default {
       this.$store.dispatch('reset');
       this.$store.dispatch('game/reset')
       this.$router.push('setting')
+    },
+    getDiscsNum (status) {
+      return this.discs.filter(disc => {
+        return disc === status
+      }).length
     }
   },
-  computed: mapState(['names']),
+  computed: {
+    ...mapState(['names']),
+    ...mapState('game', ['discs'])
+  },
   components: { Board }
 }
 </script>
 
 <style scoped>
-.black-name {
-  margin-right: 60px;
+table {
+  margin: 0 auto;
 }
-
-.white-name {
-  margin-left: 60px;
+td {
+  width: 120px;
+  padding: 0 10px;
 }
 </style>
