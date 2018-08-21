@@ -1,33 +1,32 @@
 <template>
-  <td @click="setDiscs([i, j])" :class="{ok: getChangableIndexes(i, j).length}">
-    <Disc :status="getDisc(i, j)"></Disc>
+  <td @click="setDiscs([i, j])" :class="{ok: isOk}">
+    <Disc :status="getDisc"></Disc>
   </td>
 </template>
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
 import Disc from '@/components/modules/Disc'
-import { getChangableIndexes, getIndex } from '@/logics'
+import { getIndex } from '@/logics'
 
 export default {
   props: {
     i: Number,
     j: Number,
   },
-  methods: {
-    ...mapActions('game', ['setDiscs']),
-    getDisc (i, j) {
-      return this.discs[getIndex(i, j)]
-    },
-    getChangableIndexes (i, j) {
-      return getChangableIndexes(i, j, this.nextDisc, this.discs)
-    }
-  },
+  methods: mapActions('game', ['setDiscs']),
   computed: {
     ...mapState('game', [
       'discs',
+      'okIndexes',
       'nextDisc'
-    ])
+    ]),
+    getDisc () {
+      return this.discs[getIndex(this.i, this.j)]
+    },
+    isOk() {
+      return this.okIndexes.includes(getIndex(this.i, this.j))
+    }
   },
   components: { Disc }
 }

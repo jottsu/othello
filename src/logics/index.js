@@ -7,8 +7,10 @@ import getUpperLeftIndexes from './lib/getUpperLeftIndexes'
 import getLowerRightIndexes from './lib/getLowerRightIndexes'
 import getLowerLeftIndexes from './lib/getLowerLeftIndexes'
 import getIndex from './util/getIndex'
+import getRow from './util/getRow'
+import getCol from './util/getCol'
 
-export { getIndex }
+export { getIndex, getRow, getCol }
 
 export const getChangableIndexes = (i, j, nextDisc, discs) => {
   const changableIndexes = []
@@ -23,5 +25,6 @@ export const getChangableIndexes = (i, j, nextDisc, discs) => {
   Array.prototype.push.apply(changableIndexes, getUpperLeftIndexes(i, j, nextDisc, discs));
   Array.prototype.push.apply(changableIndexes, getLowerRightIndexes(i, j, nextDisc, discs));
   Array.prototype.push.apply(changableIndexes, getLowerLeftIndexes(i, j, nextDisc, discs));
+
   return changableIndexes
 }
