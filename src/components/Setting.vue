@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Setting</h1>
+    <h2>Setting</h2>
     <div class="name-form">
       先手（黒）
       <input type="text" placeholder="名前" v-model="names.player1">

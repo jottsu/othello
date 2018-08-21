@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Game</h1>
+    <h2>Game</h2>
     <table>
       <tr>
         <td>黒: {{ names.player1 }}</td>
@@ -11,18 +11,20 @@
         <td>{{ getDiscsNum(-1) }}</td>
       </tr>
     </table>
+    <h3 v-if="isFinished">{{ getWinnerMessage }}</h3>
+    <h3 v-else>{{ getNextPlayer }} の番です</h3>
     <Board></Board>
-    <button @click="finishGame">おわる</button>
+    <button @click="resetGame">おわる</button>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import Board from '@/components/modules/Board'
 
 export default {
   methods: {
-    finishGame () {
+    resetGame () {
       if (!confirm('本当に終了しますか？')) {
         return
       }
@@ -38,7 +40,17 @@ export default {
   },
   computed: {
     ...mapState(['names']),
-    ...mapState('game', ['discs'])
+    ...mapState('game', ['discs', 'isFinished']),
+    ...mapGetters('game', ['getNextPlayer']),
+    getWinnerMessage () {
+      if (this.getDiscsNum(1) > this.getDiscsNum(-1)) {
+        return `${this.names.player1}の勝ちです！`
+      }
+      if (this.getDiscsNum(1) < this.getDiscsNum(-1)) {
+        return `${this.names.player2}の勝ちです！`
+      }
+      return `引き分けです！`
+    }
   },
   components: { Board }
 }

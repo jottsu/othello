@@ -14,7 +14,8 @@ const initialState = {
   okIndexes: [
     19, 26, 37, 44
   ],
-  nextDisc: 1
+  nextDisc: 1,
+  isFinished: false
 }
 
 export default {
@@ -46,6 +47,9 @@ export default {
     },
     changeNextDisc (state) {
       state.nextDisc *= -1
+    },
+    finishGame (state) {
+      state.isFinished = true
     },
     resetState (state) {
       Object.keys(state).forEach(key => {
@@ -81,6 +85,7 @@ export default {
       if (okIndexes.length) {
         return
       }
+      context.commit('finishGame')
     },
     reset ({ commit }) {
       commit('resetState')
