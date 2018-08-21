@@ -30,7 +30,6 @@ export default {
       }
       this.$store.dispatch('reset');
       this.$store.dispatch('game/reset')
-      this.$router.push('setting')
     },
     getDiscsNum (status) {
       return this.discs.filter(disc => {
@@ -44,10 +43,10 @@ export default {
     ...mapGetters('game', ['getNextPlayer']),
     getWinnerMessage () {
       if (this.getDiscsNum(1) > this.getDiscsNum(-1)) {
-        return `${this.names.player1}の勝ちです！`
+        return `${this.names.player1}さんの勝ちです！`
       }
       if (this.getDiscsNum(1) < this.getDiscsNum(-1)) {
-        return `${this.names.player2}の勝ちです！`
+        return `${this.names.player2}さんの勝ちです！`
       }
       return `引き分けです！`
     }

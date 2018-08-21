@@ -1,12 +1,18 @@
 <template>
   <div id="app">
-    <router-view/>
+    <Game v-if="isPlaying"></Game>
+    <Setting v-else></Setting>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import Setting from '@/components/Setting'
+import Game from '@/components/Game'
+
 export default {
-  name: 'App'
+  computed: mapState(['isPlaying']),
+  components: { Setting, Game }
 }
 </script>
 

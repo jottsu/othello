@@ -27,7 +27,6 @@ export default {
   methods: {
     startGame () {
       this.$store.dispatch('setUp', this.names)
-      this.$router.push('game')
     }
   },
   computed: {
