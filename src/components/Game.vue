@@ -14,13 +14,14 @@
     <h3 v-if="isFinished">{{ getWinnerMessage }}</h3>
     <h3 v-else>{{ getNextPlayer }} の番です</h3>
     <Board></Board>
-    <button @click="resetGame">おわる</button>
+    <Button text="おわる" @click="resetGame"></Button>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex'
 import Board from '@/components/modules/Board'
+import Button from '@/components/modules/Button'
 
 export default {
   methods: {
@@ -51,7 +52,7 @@ export default {
       return `引き分けです！`
     }
   },
-  components: { Board }
+  components: { Board, Button }
 }
 </script>
 
