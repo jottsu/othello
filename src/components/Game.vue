@@ -60,6 +60,7 @@ export default {
 table {
   margin: 0 auto;
 }
+
 td {
   width: 120px;
   padding: 0 10px;

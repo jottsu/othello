@@ -1,5 +1,5 @@
 <template>
-  <button @click="onClick" :disabled="disabled">
+  <button @click="onClick">
     {{ text }}
   </button>
 </template>
@@ -8,10 +8,6 @@
 export default {
   props: {
     text: String,
-    disabled: {
-      type: Boolean,
-      default: false
-    }
   },
   methods: {
     onClick() {
@@ -37,10 +33,5 @@ button{
 button:hover {
   color: #58d49c;
   border-color: #58d49c;
-}
-
-button:disabled {
-  color: #aaa;
-  border-color: #aaa;
 }
 </style>
