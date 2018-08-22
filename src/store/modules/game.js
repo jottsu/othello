@@ -1,26 +1,22 @@
 import { getIndex, getRow, getCol, getChangableIndexes } from '../../logics'
 
-const initialState = {
-  discs: [
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, -1, 1, 0, 0, 0,
-    0, 0, 0, 1, -1, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0
-  ],
-  okIndexes: [
-    19, 26, 37, 44
-  ],
-  nextDisc: 1,
-  isFinished: false
-}
-
 export default {
   namespaced: true,
-  state: initialState,
+  state: {
+    discs: [
+      0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, -1, 1, 0, 0, 0,
+      0, 0, 0, 1, -1, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0
+    ],
+    okIndexes: [19, 26, 37, 44],
+    nextDisc: 1,
+    isFinished: false
+  },
   getters: {
     getNextPlayer (state, getters, rootState) {
       return (state.nextDisc === 1) ? `${rootState.names.player1}さん(黒)` : `${rootState.names.player2}さん(白)`
@@ -52,9 +48,19 @@ export default {
       state.isFinished = true
     },
     resetState (state) {
-      Object.keys(state).forEach(key => {
-        state[key] = initialState[key]
-      })
+      state.discs = [
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, -1, 1, 0, 0, 0,
+        0, 0, 0, 1, -1, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0
+      ]
+      state.okIndexes = [19, 26, 37, 44]
+      state.nextDisc = 1
+      state.isFinished = false
     }
   },
   actions: {
