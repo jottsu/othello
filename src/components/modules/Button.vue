@@ -22,10 +22,10 @@ button{
   background-color: transparent;
   color: #4dbe80;
   border: 2px solid #4dbe80;
-  border-radius: 30px;
+  border-radius: 18px;
   cursor: pointer;
   outline: none;
-  padding: 5px 10px;
+  padding: 6px 14px;
   font-size: 13px;
   font-weight: bold;
 }
