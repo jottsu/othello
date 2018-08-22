@@ -2,16 +2,16 @@
   <div>
     <table>
       <tr>
-        <td>黒: {{ names.player1 }}</td>
-        <td>白: {{ names.player2 }}</td>
+        <td><strong>⚫️{{ names.player1 }}</strong></td>
+        <td><strong>⚪️{{ names.player2 }}</strong></td>
       </tr>
       <tr>
-        <td>{{ getDiscsNum(1) }}</td>
-        <td>{{ getDiscsNum(-1) }}</td>
+        <td class="point">{{ getDiscsNum(1) }}</td>
+        <td class="point">{{ getDiscsNum(-1) }}</td>
       </tr>
     </table>
-    <h3 v-if="isFinished">{{ getWinnerMessage }}</h3>
-    <h3 v-else>{{ getNextPlayer }} の番です</h3>
+    <p v-if="isFinished"><strong>{{ getResultMessage }}</strong></p>
+    <p v-else><strong>{{ getNextPlayer }}</strong>さんの番です</p>
     <Board></Board>
     <Button text="おわる" @click="resetGame"></Button>
   </div>
@@ -41,14 +41,14 @@ export default {
     ...mapState(['names']),
     ...mapState('game', ['discs', 'isFinished']),
     ...mapGetters('game', ['getNextPlayer']),
-    getWinnerMessage () {
+    getResultMessage () {
       if (this.getDiscsNum(1) > this.getDiscsNum(-1)) {
-        return `${this.names.player1}さんの勝ちです！`
+        return `⚫️${this.names.player1}さんの勝ち！`
       }
       if (this.getDiscsNum(1) < this.getDiscsNum(-1)) {
-        return `${this.names.player2}さんの勝ちです！`
+        return `⚪️${this.names.player2}さんの勝ち！`
       }
-      return `引き分けです！`
+      return `引き分け！`
     }
   },
   components: { Board, Button }
@@ -64,4 +64,13 @@ td {
   width: 150px;
   padding: 0 10px;
 }
+
+td.point {
+  font-size: 1.2em;
+}
+
+p {
+  font-size: 1.2em;
+}
+
 </style>

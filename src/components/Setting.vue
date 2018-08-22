@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h1>オセロゲーム</h1>
+    <h1>おせろげーむ</h1>
     <img src="../assets/board.png">
     <div class="form-container">
-      <NameForm label="先手(黒)" :error="errors.player1" @change="changePlayer1Name"></NameForm>
-      <NameForm label="後手(白)" :error="errors.player2" @change="changePlayer2Name"></NameForm>
+      <NameForm label="⚫️" :error="errors.player1" @change="changePlayer1Name"></NameForm>
+      <NameForm label="⚪️" :error="errors.player2" @change="changePlayer2Name"></NameForm>
     </div>
     <Button text="はじめる" @click="startGame"></Button>
  </div>
@@ -59,6 +59,6 @@ img {
 }
 
 .form-container {
-  margin: 40px 0;
+  margin: 36px 0;
 }
 </style>

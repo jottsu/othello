@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>{{label}}</span>：
+    <span>{{label}}</span>
     <input type="text" placeholder="名前" @keyup="onChange" :class="{invalid: error}">
     <p v-if="error">入力してください</p>
   </div>
@@ -34,7 +34,7 @@ input {
 }
 
 input:focus {
-  border-bottom-color: #4dbe80;
+  border-bottom-color: #3cbb71;
 }
 
 input.invalid {
@@ -42,7 +42,7 @@ input.invalid {
 }
 
 p {
-  margin: 3px 0 0 70px;
+  margin: 3px 0 0 25px;
   color: #e55;
   font-size: .8em;
 }

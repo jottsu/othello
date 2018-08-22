@@ -18,7 +18,7 @@ export default {
 
 <style scoped>
 table {
-  margin: 20px auto;
+  margin: 20px auto 30px;
   border-collapse: collapse;
   border: 3px solid #666;
 }

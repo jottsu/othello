@@ -20,8 +20,8 @@ export default {
 <style scoped>
 button{
   background-color: transparent;
-  color: #4dbe80;
-  border: 2px solid #4dbe80;
+  color: #3cbb71;
+  border: 2px solid #3cbb71;
   border-radius: 18px;
   cursor: pointer;
   outline: none;
@@ -31,7 +31,7 @@ button{
 }
 
 button:hover {
-  color: #58d49c;
-  border-color: #58d49c;
+  color: #51ca83;
+  border-color: #51ca83;
 }
 </style>

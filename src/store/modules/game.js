@@ -19,7 +19,7 @@ export default {
   },
   getters: {
     getNextPlayer (state, getters, rootState) {
-      return (state.nextDisc === 1) ? `${rootState.names.player1}さん(黒)` : `${rootState.names.player2}さん(白)`
+      return (state.nextDisc === 1) ? `⚫${rootState.names.player1}` : `⚪️${rootState.names.player2}`
     },
     getOkIndexes (state) {
       const okIndexes = []
