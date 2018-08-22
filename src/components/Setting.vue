@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h2>Setting</h2>
+    <h1>オセロゲーム</h1>
+    <img src="../assets/board.png">
     <div class="form-container">
       <NameForm label="先手(黒)" :error="errors.player1" @change="changePlayer1Name"></NameForm>
       <NameForm label="後手(白)" :error="errors.player2" @change="changePlayer2Name"></NameForm>
@@ -48,6 +49,15 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  font-size: 1.6em;
+}
+
+img {
+  width: 300px;
+  height: 300px;
+}
+
 .form-container {
   margin: 40px 0;
 }

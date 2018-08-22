@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>Game</h2>
     <table>
       <tr>
         <td>黒: {{ names.player1 }}</td>
@@ -62,7 +61,7 @@ table {
 }
 
 td {
-  width: 120px;
+  width: 150px;
   padding: 0 10px;
 }
 </style>
