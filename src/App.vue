@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     <Game v-if="isPlaying"></Game>
-    <Setting v-else></Setting>
+    <Top v-else></Top>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import Setting from '@/components/Setting'
+import Top from '@/components/Top'
 import Game from '@/components/Game'
 
 export default {
   computed: mapState(['isPlaying']),
-  components: { Setting, Game }
+  components: { Top, Game }
 }
 </script>
 
